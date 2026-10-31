@@ -543,10 +543,18 @@ uv run --project tools/skill-evals skill-eval-journal check tools/skill-evals/ev
 ```
 
 Runner flags: `--journal-note TEXT` fills `notes` (an issue link, the
-reason for the run); `--journal-model NAME` records the model when the
-`--cli` string carries no `--model` flag (the CLI's configured default is
-otherwise invisible to the runner and the table shows `(unrecorded)`);
+reason for the run); `--journal-model NAME` records the model explicitly;
 `--journal FILE` journals to another file; `--no-journal` writes nothing.
+
+The model is recorded from the best evidence available, and the record's
+`model_source` says which: `--journal-model` first, then a `--model` flag in
+the `--cli` string, then, for a `claude` CLI only, what that CLI uses when no
+flag is given: `ANTHROPIC_MODEL`, then the `model` key of
+`.claude/settings.local.json`, `.claude/settings.json` and
+`~/.claude/settings.json`, in that order. This is how runs through the
+sandboxed wrapper, which takes one argument and passes `claude -p` with no
+flag, still record a model. Nothing found is recorded as null and the table
+shows `(unrecorded)`; the runner never guesses.
 A path outside the repository's own evals tree (a copied suite, a test
 fixture) is never journaled unless `--journal` says so.
 
