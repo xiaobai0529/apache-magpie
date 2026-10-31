@@ -55,6 +55,7 @@ Start with [`overview.md`](overview.md), then:
   [`copilot-runtime.md`](copilot-runtime.md),
   [`maintainer-education.md`](maintainer-education.md),
   [`spec-gap-staleness.md`](spec-gap-staleness.md),
+  [`batch-failure-budget.md`](batch-failure-budget.md),
   [`vetted-command-surface.md`](vetted-command-surface.md),
   [`adversarial-review.md`](adversarial-review.md),
   [`sandbox-diagnostics.md`](sandbox-diagnostics.md),
